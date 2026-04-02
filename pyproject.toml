@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "netbox-custom-pages"
 version = "0.1.0"
 authors = [
-    {name = "Your Name", email = "your-email@example.com"},
+    {name = "Samuel Lin", email = "threesecond_tw@hotmail.com"},
 ]
 description = "在 NetBox 中建立自定義 HTML/JS 頁面"
 readme = "README.md"
