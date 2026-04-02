@@ -17,5 +17,6 @@ urlpatterns = [
     # Edit/Delete/ChangeLog views (Standard NetBox operations)
     path('pages/<slug:slug>/edit/', views.CustomPageEditView.as_view(), name='custompage_edit'),
     path('pages/<slug:slug>/delete/', views.CustomPageDeleteView.as_view(), name='custompage_delete'),
-    path('pages/<slug:slug>/changelog/', ObjectChangeLogView.as_view(), model=models.CustomPage),
+    path('pages/<slug:slug>/changelog/', ObjectChangeLogView.as_view(), name='custompage_changelog', kwargs={'model': models.CustomPage}),
+    
 ]
