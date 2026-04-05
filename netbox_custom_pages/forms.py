@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
 from utilities.forms.fields import TagFilterField
+from utilities.forms.rendering import FieldSet
 from .models import CustomPage
 
 class CustomPageForm(NetBoxModelForm):
@@ -9,9 +10,9 @@ class CustomPageForm(NetBoxModelForm):
     Form for creating and editing CustomPage instances.
     """
     fieldsets = (
-        (_('Page Identification'), {'fields': ('name', 'slug', 'editor_mode', 'tags')}),
-        (_('Directory Settings'), {'fields': ('link_text', 'weight', 'is_published')}),
-        (_('Content'), {'fields': ('content',)}),
+        FieldSet('name', 'slug', 'editor_mode', 'tags', name=_('Page Identification')),
+        FieldSet('link_text', 'weight', 'is_published', name=_('Directory Settings')),
+        FieldSet('content', name=_('Content')),
     )
 
     class Meta:
