@@ -1,0 +1,89 @@
+{% extends 'base/layout.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Menu Editor" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col col-md-10 offset-md-1 mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+            <h2 class="mb-0">
+                <i class="mdi mdi-sort text-primary"></i> {% trans "Menu Editor" %}
+            </h2>
+            <a href="{% url 'plugins:netbox_custom_pages:custompage_list' %}" class="btn btn-outline-secondary btn-sm">
+                <i class="mdi mdi-arrow-left"></i> {% trans "Back to Manage Pages" %}
+            </a>
+        </div>
+
+        <div class="alert alert-info mb-4" role="alert">
+            <i class="mdi mdi-information-outline"></i>
+            {% trans "Adjust the display name, sort order, and publish status for all pages here. Lower weight values appear first in the directory." %}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width:30%">{% trans "Page Name" %}</th>
+                                <th style="width:30%">{% trans "Menu Link Text" %}</th>
+                                <th style="width:10%" class="text-center">{% trans "Weight" %}</th>
+                                <th style="width:15%" class="text-center">{% trans "Published" %}</th>
+                                <th style="width:15%" class="text-center">{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in formset %}
+                                {{ form.id }}
+                                <tr class="{% if not form.instance.is_published %}table-secondary{% endif %}">
+                                    <td>
+                                        <strong>{{ form.instance.name }}</strong>
+                                        <br>
+                                        <small class="text-muted">/render/{{ form.instance.slug }}/</small>
+                                    </td>
+                                    <td>{{ form.link_text }}</td>
+                                    <td class="text-center">{{ form.weight }}</td>
+                                    <td class="text-center">
+                                        <div class="form-check d-flex justify-content-center">
+                                            {{ form.is_published }}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{% url 'plugins:netbox_custom_pages:custompage_edit' pk=form.instance.pk %}" class="btn btn-sm btn-outline-primary" title="{% trans 'Edit Page' %}">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'plugins:netbox_custom_pages:page_render' slug=form.instance.slug %}" class="btn btn-sm btn-outline-success" target="_blank" title="{% trans 'Preview' %}">
+                                            <i class="mdi mdi-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-4">
+                                        <i class="mdi mdi-information-outline"></i> {% trans "No pages created yet." %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4 gap-2">
+                <a href="{% url 'plugins:netbox_custom_pages:custompage_list' %}" class="btn btn-outline-secondary">
+                    {% trans "Cancel" %}
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="mdi mdi-content-save"></i> {% trans "Save All Changes" %}
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

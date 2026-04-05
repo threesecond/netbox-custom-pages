@@ -22,6 +22,13 @@ menu_items = (
                 color='green',
                 permissions=['netbox_custom_pages.add_custompage'],
             ),
+            PluginMenuButton(
+                link='plugins:netbox_custom_pages:menu_editor',
+                title=_('Menu Editor'),
+                icon_class='mdi mdi-sort',
+                color='grey',
+                permissions=['netbox_custom_pages.change_custompage'],
+            ),
         )
     ),
 )
