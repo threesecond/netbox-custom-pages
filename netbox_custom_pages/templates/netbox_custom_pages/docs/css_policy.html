@@ -1,0 +1,70 @@
+{% extends 'base/layout.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "CSS Guidelines" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col col-md-10 offset-md-1">
+        <div class="card mt-4">
+            <div class="card-header border-bottom">
+                <h4><i class="mdi mdi-language-css3 text-info"></i> {% trans "CSS Guidelines" %}</h4>
+            </div>
+            <div class="card-body">
+                <p>{% trans "To ensure your Custom Pages integrate seamlessly with the NetBox UI and prevent breaking other users' viewing experiences, please strictly follow these CSS guidelines." %}</p>
+
+                <div class="alert alert-warning my-3">
+                    <strong><i class="mdi mdi-alert"></i> {% trans "Core Principle: No Global CSS Pollution" %}</strong><br>
+                    {% trans "Your page code is directly embedded into the NetBox framework. Any CSS rules without a scoped boundary will leak out and break the official NetBox menus and layout." %}
+                </div>
+
+                <h5 class="text-danger mt-4"><i class="mdi mdi-close-circle"></i> {% trans "Incorrect (Do Not Use)" %}</h5>
+                <p>{% trans "Never write global styles targeting raw HTML elements like below:" %}</p>
+                <pre class="bg-light p-3 border rounded"><code>&lt;style&gt;
+/* 🚨 {% trans "This sets the entire NetBox background to black, causing a disaster!" %} */
+body {
+    background-color: black;
+}
+p {
+    font-size: 20px;
+}
+&lt;/style&gt;</code></pre>
+
+                <h5 class="text-success mt-4"><i class="mdi mdi-check-circle"></i> {% trans "Best Practice 1: Inline Styles" %}</h5>
+                <p>{% trans "Writing styles directly on elements is the safest and will not cause pollution:" %}</p>
+                <pre class="bg-light p-3 border rounded"><code>&lt;div style="background-color: #f1f1f1; padding: 20px; border-radius: 5px;"&gt;
+    &lt;p style="color: blue;"&gt;{% trans "Safe web content" %}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <h5 class="text-success mt-4"><i class="mdi mdi-check-circle"></i> {% trans "Best Practice 2: Scoped Wrapper" %}</h5>
+                <p>{% trans "If you must use a &lt;style&gt; block, create a unique outer wrapper ID or class, and nest all your CSS under it:" %}</p>
+                <pre class="bg-light p-3 border rounded"><code>&lt;style&gt;
+/* ✅ {% trans "This only affects the inner p tag of your custom container." %} */
+.my-custom-dashboard p {
+    font-size: 16px;
+    color: darkgreen;
+}
+&lt;/style&gt;
+
+&lt;!-- {% trans "Ensure all your content is wrapped safely." %} --&gt;
+&lt;div class="my-custom-dashboard"&gt;
+    &lt;p&gt;{% trans "Safe custom content here" %}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <h5 class="text-primary mt-4"><i class="mdi mdi-star"></i> {% trans "Ultimate Practice: Bootstrap 5" %}</h5>
+                <p>{% trans "NetBox natively includes Bootstrap 5. We highly recommend using native Bootstrap classes for formatting. You might not need custom CSS at all:" %}</p>
+                <pre class="bg-light p-3 border rounded"><code>&lt;!-- {% trans "Use Bootstrap cards, buttons, and spacing." %} --&gt;
+&lt;div class="card p-3 shadow-sm mb-4"&gt;
+    &lt;h3 class="text-primary"&gt;{% trans "System Dashboard" %}&lt;/h3&gt;
+    &lt;button class="btn btn-success mt-2" onclick="fetchData()"&gt;{% trans "Load Data" %}&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="card-footer text-end mt-2">
+                <a href="#" onclick="window.close()" class="btn btn-secondary">
+                    <i class="mdi mdi-close"></i> {% trans "Close Window" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'generic/object_edit.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <!-- Quill.js for WYSIWYG -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- CodeMirror for HTML -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css">
+    
+    <style>
+        #quill-editor { height: 400px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+        .CodeMirror { height: 400px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        #preview-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1050; }
+        #preview-content { background: white; margin: 5% auto; width: 80%; height: 80%; border-radius: 8px; padding: 20px; overflow: auto; position: relative; }
+        .close-preview { position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 24px; font-weight: bold; }
+    </style>
+{% endblock %}
+
+{% block form %}
+    {{ block.super }}
+
+    <!-- Custom Editors Container (Injected via JS near the content field) -->
+    <div id="dynamic-editor-wrapper" style="display:none; margin-top: 15px;">
+        <!-- CSS Pollution Warning Alert -->
+        <div class="alert alert-warning mb-3" role="alert" style="font-size: 0.9em; padding: 0.5rem 1rem;">
+            <i class="mdi mdi-alert"></i>
+            {% trans "Warning: To prevent breaking the NetBox UI, DO NOT use global CSS selectors (like" %} <code>&lt;style&gt; body { } &lt;/style&gt;</code>). {% trans "Please use inline styles or Bootstrap utility classes." %}
+            <a href="{% url 'plugins:netbox_custom_pages:css_policy' %}" target="_blank" class="alert-link text-decoration-underline ms-1">
+                {% trans "See more CSS guidelines" %} <i class="mdi mdi-open-in-new"></i>
+            </a>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2 align-items-center">
+            <strong><i class="mdi mdi-code-tags"></i> {% trans "Content Editor" %}</strong>
+            <div>
+                <button type="button" class="btn btn-sm btn-outline-info me-2" data-bs-toggle="modal" data-bs-target="#api-helper-modal">
+                    <i class="mdi mdi-api"></i> {% trans "API Helper" %}
+                </button>
+                <button type="button" class="btn btn-sm btn-primary" id="btn-preview">
+                    <i class="mdi mdi-eye"></i> {% trans "Live Preview" %}
+                </button>
+            </div>
+        </div>
+        
+        <!-- WYSIWYG Editor -->
+        <div id="quill-wrapper">
+            <div id="quill-editor"></div>
+        </div>
+        
+        <!-- HTML Code Editor -->
+        <div id="codemirror-wrapper" style="display:none;">
+            <textarea id="cm-editor"></textarea>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="preview-modal">
+        <div id="preview-content">
+            <span class="close-preview">&times;</span>
+            <h4 class="mb-3"><i class="mdi mdi-monitor-eye border-bottom"></i> {% trans "Live Preview" %}</h4>
+            <div id="preview-body"></div>
+        </div>
+    </div>
+    </div>
+
+    <!-- API Helper Modal -->
+    <div class="modal fade" id="api-helper-modal" tabindex="-1" aria-hidden="true" style="z-index: 1060;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="mdi mdi-api text-info"></i> {% trans "API Helper & Code Snippets" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-primary">{% trans "1. Fetch NetBox Data (No Token Required)" %}</h6>
+                    <p class="text-muted small mb-1">{% trans "Automatically utilizes your current NetBox login session." %}</p>
+                    <pre class="bg-dark text-light p-3 rounded" style="overflow-x:auto;"><code>fetch('/api/dcim/devices/?limit=5')
+  .then(res => res.json())
+  .then(data => console.log(data.results));</code></pre>
+
+                    <h6 class="text-primary mt-4">{% trans "2. Secure Proxy Request (Third-Party APIs)" %}</h6>
+                    <p class="text-muted small mb-1">{% trans "Prevents token leaks and CORS issues. Set tokens in your NetBox configuration.py <code>PLUGINS_CONFIG</code> first." %}</p>
+                    <pre class="bg-dark text-light p-3 rounded" style="overflow-x:auto;"><code>fetch('/api/plugins/custom-pages/proxy/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': document.cookie.split('csrftoken=')[1].split(';')[0]
+  },
+  body: JSON.stringify({
+    target_url: 'https://grafana.internal/api/dashboards',
+    token_key: 'grafana_read_only', // Alias mapped in configuration.py
+    method: 'GET'
+  })
+})
+  .then(res => res.json())
+  .then(data => console.log(data.data)); // Result payload is in data.data</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/htmlmixed/htmlmixed.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Locate Django's rendered textarea and editor_mode
+            const contentField = document.getElementById('id_content_sync');
+            const modeSelect = document.getElementById('id_editor_mode');
+            if(!contentField || !modeSelect) return;
+            
+            // Move our dynamic wrapper just above the hidden content field
+            const wrapper = document.getElementById('dynamic-editor-wrapper');
+            contentField.parentNode.insertBefore(wrapper, contentField);
+            wrapper.style.display = 'block';
+
+            // Init Quill
+            const quill = new Quill('#quill-editor', {
+                theme: 'snow',
+                modules: { toolbar: [ [{ 'header': [1, 2, 3, false] }], ['bold', 'italic', 'underline'], [{'list': 'ordered'}, {'list': 'bullet'}], ['code-block'], ['link', 'image'] ] }
+            });
+
+            // Init CodeMirror
+            const cmEditor = CodeMirror.fromTextArea(document.getElementById('cm-editor'), {
+                mode: 'htmlmixed',
+                theme: 'monokai',
+                lineNumbers: true
+            });
+
+            // Populate initial content
+            const initialData = contentField.value;
+            quill.clipboard.dangerouslyPasteHTML(initialData);
+            cmEditor.setValue(initialData);
+
+            // Toggle function
+            let lastMode = modeSelect.value;
+            function updateEditorVisibility() {
+                const currentMode = modeSelect.value;
+                if (currentMode === 'wysiwyg') {
+                    document.getElementById('quill-wrapper').style.display = 'block';
+                    document.getElementById('codemirror-wrapper').style.display = 'none';
+                    if (lastMode === 'html') {
+                        quill.clipboard.dangerouslyPasteHTML(cmEditor.getValue());
+                    }
+                } else {
+                    document.getElementById('quill-wrapper').style.display = 'none';
+                    document.getElementById('codemirror-wrapper').style.display = 'block';
+                    if (lastMode === 'wysiwyg') {
+                        cmEditor.setValue(quill.root.innerHTML);
+                    }
+                    setTimeout(() => cmEditor.refresh(), 100);
+                }
+                lastMode = currentMode;
+            }
+
+            modeSelect.addEventListener('change', updateEditorVisibility);
+            updateEditorVisibility();
+
+            // Sync on form submit
+            contentField.closest('form').addEventListener('submit', function() {
+                if (modeSelect.value === 'wysiwyg') {
+                    contentField.value = quill.root.innerHTML;
+                } else {
+                    contentField.value = cmEditor.getValue();
+                }
+            });
+
+            // Preview logic
+            const previewModal = document.getElementById('preview-modal');
+            document.getElementById('btn-preview').addEventListener('click', function() {
+                const html = modeSelect.value === 'wysiwyg' ? quill.root.innerHTML : cmEditor.getValue();
+                document.getElementById('preview-body').innerHTML = html;
+                previewModal.style.display = 'block';
+            });
+            document.querySelector('.close-preview').addEventListener('click', function() {
+                previewModal.style.display = 'none';
+            });
+        });
+    </script>
+{% endblock %}

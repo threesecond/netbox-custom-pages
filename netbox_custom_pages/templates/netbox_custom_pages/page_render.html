@@ -1,0 +1,11 @@
+{% extends 'base/layout.html' %}
+{% load i18n %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    <!-- Auto-rendered Custom Page Output -->
+    <div class="custom-page-container mt-3">
+        {{ object.content|safe }}
+    </div>
+{% endblock %}

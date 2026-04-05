@@ -4,11 +4,13 @@ class NetBoxCustomPagesConfig(PluginConfig):
     name = 'netbox_custom_pages'
     verbose_name = 'NetBox Custom Pages'
     description = 'Create custom web pages within NetBox using HTML and JS'
-    version = '0.1.0'
-    author = 'Your Name'
+    version = '0.5.0'
+    author = 'Samuel Lin'
+    min_version = '4.4.0'
+    max_version = '4.5.99'
     base_url = 'custom-pages'
     
-    # 預留第三方 API 的配置空間
+    # Default plugin settings for third-party API configurations
     default_settings = {
         'external_api_keys': {},
         'allow_raw_js': True,

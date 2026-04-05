@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "netbox-custom-pages"
-version = "0.1.0"
+version = "0.5.0"
 authors = [
     {name = "Samuel Lin", email = "threesecond_tw@hotmail.com"},
 ]
-description = "在 NetBox 中建立自定義 HTML/JS 頁面"
+description = "Create custom HTML/JS pages and dashboards within NetBox"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []

@@ -1,5 +1,6 @@
 from django import forms
-from netbox.forms import NetBoxModelForm
+from django.utils.translation import gettext_lazy as _
+from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
 from utilities.forms.fields import TagFilterField
 from .models import CustomPage
 
@@ -7,20 +8,26 @@ class CustomPageForm(NetBoxModelForm):
     """
     Form for creating and editing CustomPage instances.
     """
-    # Use fieldsets to organize the layout in NetBox UI
     fieldsets = (
-        ('Page Identification', ('name', 'slug', 'tags')),
-        ('Content Editors', ('content_html', 'content_js', 'content_css')),
+        (_('Page Identification'), ('name', 'slug', 'editor_mode', 'tags')),
+        (_('Directory Settings'), ('link_text', 'weight', 'is_published')),
+        (_('Content'), ('content',)),
     )
 
     class Meta:
         model = CustomPage
-        fields = ('name', 'slug', 'content_html', 'content_js', 'content_css', 'tags')
+        fields = ('name', 'slug', 'editor_mode', 'link_text', 'weight', 'is_published', 'content', 'tags')
         
-        # We use HiddenInput or specific widgets because 
-        # JavaScript (Quill/Monaco) will take over these textareas.
+        # Hidden input mapped to our JavaScript editors in the template
         widgets = {
-            'content_html': forms.Textarea(attrs={'class': 'hidden', 'id': 'id_content_html'}),
-            'content_js': forms.Textarea(attrs={'class': 'hidden', 'id': 'id_content_js'}),
-            'content_css': forms.Textarea(attrs={'class': 'hidden', 'id': 'id_content_css'}),
+            'content': forms.Textarea(attrs={'id': 'id_content_sync', 'style': 'display: none;'}),
         }
+
+class CustomPageFilterForm(NetBoxModelFilterSetForm):
+    model = CustomPage
+    
+    editor_mode = forms.ChoiceField(
+        choices=CustomPage.EDITOR_CHOICES,
+        required=False,
+        label=_('Editor Mode')
+    )

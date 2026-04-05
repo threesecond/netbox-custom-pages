@@ -1,10 +1,28 @@
-from netbox.plugins import PluginMenuItem
+from django.utils.translation import gettext_lazy as _
+from netbox.plugins import PluginMenuItem, PluginMenuButton
+from utilities.choices import ButtonColorChoices
 
 # Define the menu items to be injected into the NetBox sidebar
 menu_items = (
     PluginMenuItem(
-        link='plugins:netbox_custom_pages:custompage_list',
-        link_text='Custom Pages',
+        link='plugins:netbox_custom_pages:custompage_hub',
+        link_text=_('Pages Directory'),
         permissions=['netbox_custom_pages.view_custompage'],
+        buttons=(
+            PluginMenuButton(
+                link='plugins:netbox_custom_pages:custompage_list',
+                title=_('Manage Pages'),
+                icon_class='mdi mdi-cog',
+                color=ButtonColorChoices.BLUE,
+                permissions=['netbox_custom_pages.add_custompage'],
+            ),
+            PluginMenuButton(
+                link='plugins:netbox_custom_pages:custompage_add',
+                title=_('Add Page'),
+                icon_class='mdi mdi-plus-thick',
+                color=ButtonColorChoices.GREEN,
+                permissions=['netbox_custom_pages.add_custompage'],
+            ),
+        )
     ),
 )

@@ -5,18 +5,24 @@ from . import models, views
 app_name = 'netbox_custom_pages'
 
 urlpatterns = [
+    # Public Dashboard Hub (Entry point)
+    path('', views.PublicPageListView.as_view(), name='custompage_hub'),
+
     # List view for all custom pages
     path('pages/', views.CustomPageListView.as_view(), name='custompage_list'),
     
     # Create a new page
     path('pages/add/', views.CustomPageEditView.as_view(), name='custompage_add'),
     
-    # Individual page view (The actual custom content)
-    path('pages/<slug:slug>/', views.CustomPageView.as_view(), name='custompage'),
+    # Detail view in Admin UI
+    path('pages/<int:pk>/', views.CustomPageView.as_view(), name='custompage'),
+    path('pages/<int:pk>/edit/', views.CustomPageEditView.as_view(), name='custompage_edit'),
+    path('pages/<int:pk>/delete/', views.CustomPageDeleteView.as_view(), name='custompage_delete'),
+    path('pages/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='custompage_changelog', kwargs={'model': models.CustomPage}),
+
+    # Render URL: The actual custom page visible to users
+    path('render/<slug:slug>/', views.PageRenderView.as_view(), name='page_render'),
     
-    # Edit/Delete/ChangeLog views (Standard NetBox operations)
-    path('pages/<slug:slug>/edit/', views.CustomPageEditView.as_view(), name='custompage_edit'),
-    path('pages/<slug:slug>/delete/', views.CustomPageDeleteView.as_view(), name='custompage_delete'),
-    path('pages/<slug:slug>/changelog/', ObjectChangeLogView.as_view(), name='custompage_changelog', kwargs={'model': models.CustomPage}),
-    
+    # Documentation Views
+    path('docs/css-policy/', views.CSSPolicyView.as_view(), name='css_policy'),
 ]
