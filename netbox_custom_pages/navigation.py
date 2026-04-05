@@ -1,6 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 from netbox.plugins import PluginMenuItem, PluginMenuButton
-from utilities.choices import ButtonColorChoices
 
 # Define the menu items to be injected into the NetBox sidebar
 menu_items = (
@@ -13,14 +12,14 @@ menu_items = (
                 link='plugins:netbox_custom_pages:custompage_list',
                 title=_('Manage Pages'),
                 icon_class='mdi mdi-cog',
-                color=ButtonColorChoices.BLUE,
+                color='blue',
                 permissions=['netbox_custom_pages.add_custompage'],
             ),
             PluginMenuButton(
                 link='plugins:netbox_custom_pages:custompage_add',
                 title=_('Add Page'),
                 icon_class='mdi mdi-plus-thick',
-                color=ButtonColorChoices.GREEN,
+                color='green',
                 permissions=['netbox_custom_pages.add_custompage'],
             ),
         )
