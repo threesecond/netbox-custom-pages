@@ -9,9 +9,10 @@ __pycache__/
 dist/
 build/
 
-# IDE / Editor
+# IDE / Editor / AI
 .vscode/
 .idea/
+.ai/
 
 # Virtual environments
 venv/

@@ -9,9 +9,9 @@ class CustomPageForm(NetBoxModelForm):
     Form for creating and editing CustomPage instances.
     """
     fieldsets = (
-        (_('Page Identification'), ('name', 'slug', 'editor_mode', 'tags')),
-        (_('Directory Settings'), ('link_text', 'weight', 'is_published')),
-        (_('Content'), ('content',)),
+        (_('Page Identification'), {'fields': ('name', 'slug', 'editor_mode', 'tags')}),
+        (_('Directory Settings'), {'fields': ('link_text', 'weight', 'is_published')}),
+        (_('Content'), {'fields': ('content',)}),
     )
 
     class Meta:
