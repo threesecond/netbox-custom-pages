@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-06 00:00+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: forms.py:12
+msgid "Page Identification"
+msgstr ""
+
+#: forms.py:13
+msgid "Directory Settings"
+msgstr ""
+
+#: forms.py:14 models.py:27
+msgid "Content"
+msgstr ""
+
+#: forms.py:32 models.py:33 tables.py:15
+#: templates/netbox_custom_pages/custom_page.html:20
+msgid "Editor Mode"
+msgstr ""
+
+#: models.py:11
+msgid "WYSIWYG Editor"
+msgstr ""
+
+#: models.py:12
+msgid "Raw HTML Editor"
+msgstr ""
+
+#: models.py:18
+msgid "Page Name"
+msgstr ""
+
+#: models.py:23
+msgid "Unique URL-friendly identifier (e.g., 'my-status-page')"
+msgstr ""
+
+#: models.py:38
+msgid "Menu Link Text"
+msgstr ""
+
+#: models.py:39
+msgid ""
+"Optional text to display in the directory menu. Defaults to Name if blank."
+msgstr ""
+
+#: models.py:43
+msgid "Weight / Order"
+msgstr ""
+
+#: models.py:44
+msgid "Display order in the directory (lower numbers appear first)."
+msgstr ""
+
+#: models.py:48 tables.py:21
+msgid "Published"
+msgstr ""
+
+#: models.py:49
+msgid "If unchecked, this page will be hidden from the public directory."
+msgstr ""
+
+#: models.py:54
+msgid "Custom Page"
+msgstr ""
+
+#: models.py:55
+msgid "Custom Pages"
+msgstr ""
+
+#: navigation.py:8 templates/netbox_custom_pages/public_index.html:9
+msgid "Pages Directory"
+msgstr ""
+
+#: navigation.py:13
+msgid "Manage Pages"
+msgstr ""
+
+#: navigation.py:20
+msgid "Add Page"
+msgstr ""
+
+#: tables.py:12 templates/netbox_custom_pages/custom_page.html:12
+msgid "Name"
+msgstr ""
+
+#: tables.py:18
+msgid "Weight"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page.html:8
+msgid "Custom Page Details"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page.html:16
+msgid "Slug"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page.html:24
+msgid "Public Link"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page.html:27
+msgid "View Rendered Page"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:30
+msgid ""
+"Warning: To prevent breaking the NetBox UI, DO NOT use global CSS selectors "
+"(like"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:30
+msgid "Please use inline styles or Bootstrap utility classes."
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:32
+msgid "See more CSS guidelines"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:37
+msgid "Content Editor"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:40
+msgid "API Helper"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:43
+#: templates/netbox_custom_pages/custom_page_edit.html:63
+msgid "Live Preview"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:74
+msgid "API Helper & Code Snippets"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:78
+msgid "1. Fetch NetBox Data (No Token Required)"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:79
+msgid "Automatically utilizes your current NetBox login session."
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:84
+msgid "2. Secure Proxy Request (Third-Party APIs)"
+msgstr ""
+
+#: templates/netbox_custom_pages/custom_page_edit.html:85
+msgid ""
+"Prevents token leaks and CORS issues. Set tokens in your NetBox "
+"configuration.py <code>PLUGINS_CONFIG</code> first."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:4
+#: templates/netbox_custom_pages/docs/css_policy.html:11
+msgid "CSS Guidelines"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:14
+msgid ""
+"To ensure your Custom Pages integrate seamlessly with the NetBox UI and "
+"prevent breaking other users' viewing experiences, please strictly follow "
+"these CSS guidelines."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:17
+msgid "Core Principle: No Global CSS Pollution"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:18
+msgid ""
+"Your page code is directly embedded into the NetBox framework. Any CSS rules "
+"without a scoped boundary will leak out and break the official NetBox menus "
+"and layout."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:21
+msgid "Incorrect (Do Not Use)"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:22
+msgid "Never write global styles targeting raw HTML elements like below:"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:24
+msgid "This sets the entire NetBox background to black, causing a disaster!"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:33
+msgid "Best Practice 1: Inline Styles"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:34
+msgid ""
+"Writing styles directly on elements is the safest and will not cause "
+"pollution:"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:36
+msgid "Safe web content"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:39
+msgid "Best Practice 2: Scoped Wrapper"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:40
+msgid ""
+"If you must use a &lt;style&gt; block, create a unique outer wrapper ID or "
+"class, and nest all your CSS under it:"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:42
+msgid "This only affects the inner p tag of your custom container."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:49
+msgid "Ensure all your content is wrapped safely."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:51
+msgid "Safe custom content here"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:54
+msgid "Ultimate Practice: Bootstrap 5"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:55
+msgid ""
+"NetBox natively includes Bootstrap 5. We highly recommend using native "
+"Bootstrap classes for formatting. You might not need custom CSS at all:"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:56
+msgid "Use Bootstrap cards, buttons, and spacing."
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:58
+msgid "System Dashboard"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:59
+msgid "Load Data"
+msgstr ""
+
+#: templates/netbox_custom_pages/docs/css_policy.html:64
+msgid "Close Window"
+msgstr ""
+
+#: templates/netbox_custom_pages/public_index.html:4
+msgid "Custom Pages Directory"
+msgstr ""
+
+#: templates/netbox_custom_pages/public_index.html:21
+msgid "Open Page"
+msgstr ""
+
+#: templates/netbox_custom_pages/public_index.html:30
+msgid "No pages have been published yet."
+msgstr ""
