@@ -17,6 +17,17 @@ class CustomPageListView(generic.ObjectListView):
     table = tables.CustomPageTable
     filterset = filtersets.CustomPageFilterSet
     filterset_form = forms.CustomPageFilterForm
+    # Disable the auto-generated import button (it produces a broken /pages/None URL).
+    # Users access our custom import pages via the extra buttons injected below.
+    action_buttons = ('add', 'export')
+    template_name = 'netbox_custom_pages/custompage_list.html'
+
+    def get_extra_context(self, request):
+        return {
+            'csv_import_url': 'plugins:netbox_custom_pages:custompage_import',
+            'json_import_url': 'plugins:netbox_custom_pages:custompage_import_json',
+            'json_export_url': 'plugins:netbox_custom_pages:custompage_export_json',
+        }
 
 class CustomPageView(generic.ObjectView):
     """

@@ -1,0 +1,16 @@
+{% extends 'generic/object_list.html' %}
+{% load i18n %}
+
+{% block extra_controls %}
+<div class="btn-group me-2">
+    <a href="{% url csv_import_url %}" class="btn btn-sm btn-outline-primary">
+        <i class="mdi mdi-file-delimited-outline"></i> {% trans "Import CSV" %}
+    </a>
+    <a href="{% url json_import_url %}" class="btn btn-sm btn-outline-info">
+        <i class="mdi mdi-code-json"></i> {% trans "Import JSON" %}
+    </a>
+    <a href="{% url json_export_url %}" class="btn btn-sm btn-outline-success">
+        <i class="mdi mdi-download"></i> {% trans "Export JSON" %}
+    </a>
+</div>
+{% endblock %}
