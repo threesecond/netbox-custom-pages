@@ -1,0 +1,6 @@
+include README.md
+include README_zh_TW.md
+include LICENSE
+recursive-include netbox_custom_pages/templates *
+recursive-include netbox_custom_pages/static *
+recursive-include netbox_custom_pages/locale *

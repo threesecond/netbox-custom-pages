@@ -1,4 +1,9 @@
+<p align="center">
+  <img src="netbox_custom_pages/static/netbox_custom_pages/img/icon.png" width="128" height="128" alt="NetBox Custom Pages Icon">
+</p>
+
 # NetBox Custom Pages Plugin
+### Creating custom web pages made easy!
 
 **English** | [繁體中文](README_zh_TW.md)
 
@@ -14,6 +19,17 @@ A powerful, highly-customizable NetBox plugin allowing administrators to create 
 - **Enterprise Ready**: Seamlessly compatible with NetBox 4.4+.
 
 ---
+
+## 📽️ Screenshots
+![Manage Pages](file:///C:/Users/threesecond/.gemini/antigravity/brain/c437f470-9337-4a13-8ec1-60337af94cb4/media__1775434381486.png)
+
+---
+
+## 🛠️ Dependencies
+
+- **NetBox**: 4.4.0+
+- **Python**: 3.10+
+- **Django**: 5.0+ (bundled with NetBox)
 
 ## 🔒 Security & Best Practices
 
@@ -83,3 +99,11 @@ When styling your custom pages, do **not** use global CSS selectors (e.g., `body
 1. Add `netbox_custom_pages` to `PLUGINS` in `configuration.py`.
 2. Run database migrations: `python manage.py makemigrations netbox_custom_pages` then `python manage.py migrate`.
 3. Restart the NetBox WSGI service.
+
+---
+
+## 🤝 Support & Community
+
+- **Bug Reports**: Please open an issue on [GitHub Issues](https://github.com/threesecond/netbox-custom-pages/issues).
+- **Discussions**: For general questions, use [GitHub Discussions](https://github.com/threesecond/netbox-custom-pages/discussions).
+- **Contributing**: We welcome pull requests! Please ensure all code passes the CI linting and tests.
