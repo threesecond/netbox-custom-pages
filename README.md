@@ -21,7 +21,23 @@ A powerful, highly-customizable NetBox plugin allowing administrators to create 
 ---
 
 ## 📽️ Screenshots
-![Manage Pages](file:///C:/Users/threesecond/.gemini/antigravity/brain/c437f470-9337-4a13-8ec1-60337af94cb4/media__1775434381486.png)
+
+### 1. Public Dashboard Hub
+_A clean, read-only index page for all published pages._
+![Public Dashboard](docs/img/screenshots-your-own-pages.png)
+
+### 2. Manage Pages (Admin)
+_The central management interface for creation and deletion._
+![Manage Pages](docs/img/screenshots-cuscom-pages.png)
+
+### 3. Menu Editor (Bulk Actions)
+_Bulk edit display names, weights, and status for all pages._
+![Menu Editor](docs/img/screenshots-menu-editor.png)
+
+### 4. Dual Editor Modes
+_Choose between WYSIWYG and Raw HTML editors._
+![WYSIWYG Editor](docs/img/screenshots-wysiwyg-editor.png)
+![HTML Editor](docs/img/screenshots-text-editor.png)
 
 ---
 

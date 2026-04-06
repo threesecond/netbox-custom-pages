@@ -15,6 +15,27 @@
 
 ---
 
+## 📽️ 操作截圖 (Screenshots)
+
+### 1. 前台目錄大廳 (Dashboard Hub)
+一個乾淨且唯讀的展示首頁，列出所有已發布上線的自定義頁面。
+![前台首頁](docs/img/screenshots-your-own-pages.png)
+
+### 2. 管理頁面 (Admin)
+管理所有頁面，進行新增、刪除以及批次編輯。
+![總覽頁面](docs/img/screenshots-cuscom-pages.png)
+
+### 3. 選單編輯器 (Menu Editor)
+批次調整所有頁面的顯示文字、權重順序與發布狀態。
+![選單編輯器](docs/img/screenshots-menu-editor.png)
+
+### 4. 雙模式編輯器 (Dual Editor)
+可自由切換富文本 (WYSIWYG) 直覺編輯或是 HTML 原始碼精確控制。
+![富文本編輯器](docs/img/screenshots-wysiwyg-editor.png)
+![原始碼編輯器](docs/img/screenshots-text-editor.png)
+
+---
+
 ## 🔒 資安防護與最佳實踐
 
 ### 1. 敏感資訊管理 (透過 Proxy 代理 API)
