@@ -26,7 +26,7 @@ menu_items = (
                 link='plugins:netbox_custom_pages:menu_editor',
                 title=_('Menu Editor'),
                 icon_class='mdi mdi-sort',
-                color='grey',
+                color='gray',
                 permissions=['netbox_custom_pages.change_custompage'],
             ),
         )
