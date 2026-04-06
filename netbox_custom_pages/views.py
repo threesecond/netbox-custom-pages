@@ -22,9 +22,11 @@ class CustomPageListView(generic.ObjectListView):
 
     def get_extra_context(self, request):
         return {
-            'csv_import_url': 'plugins:netbox_custom_pages:custompage_import',
+            'add_url': 'plugins:netbox_custom_pages:custompage_add',
+            'import_url': 'plugins:netbox_custom_pages:custompage_import',
             'json_import_url': 'plugins:netbox_custom_pages:custompage_import_json',
             'json_export_url': 'plugins:netbox_custom_pages:custompage_export_json',
+            **super().get_extra_context(request),
         }
 
 class CustomPageView(generic.ObjectView):
