@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm, NetBoxModelImportForm
+from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
 from utilities.forms.fields import TagFilterField
 from utilities.forms.rendering import FieldSet
 from django.forms import modelformset_factory
@@ -58,14 +58,33 @@ MenuEditorFormSet = modelformset_factory(
 )
 
 
-class CustomPageImportForm(NetBoxModelImportForm):
+class CSVImportForm(forms.Form):
     """
-    CSV import form for CustomPage.
-    Only imports metadata fields; content is left blank intentionally.
+    CSV import form for CustomPage metadata.
+    Accepts file upload or pasted CSV text.
+    Content field is intentionally excluded.
     """
-    class Meta:
-        model = CustomPage
-        fields = ('name', 'slug', 'editor_mode', 'link_text', 'weight', 'is_published')
+    csv_file = forms.FileField(
+        required=False,
+        label=_('CSV File'),
+        help_text=_('Upload a .csv file. Headers: name, slug, editor_mode, link_text, weight, is_published')
+    )
+    csv_data = forms.CharField(
+        required=False,
+        label=_('CSV Data'),
+        widget=forms.Textarea(attrs={
+            'class': 'form-control font-monospace',
+            'rows': 8,
+            'placeholder': 'name,slug,editor_mode,link_text,weight,is_published\nMy Page,my-page,html,My Page,100,True'
+        }),
+        help_text=_('Or paste CSV data directly. File upload takes priority if both are provided.')
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not cleaned_data.get('csv_file') and not cleaned_data.get('csv_data'):
+            raise forms.ValidationError(_('Please provide either a CSV file or paste CSV data.'))
+        return cleaned_data
 
 
 class JSONImportForm(forms.Form):
