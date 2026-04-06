@@ -6,134 +6,135 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-06 00:00+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-04-06 18:41+0800\n"
+"Last-Translator: Samuel Lin <threesecond_tw@hotmail.com>\n"
+"Language-Team: \n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: forms.py:12
 msgid "Page Identification"
-msgstr "頁面識別"
+msgstr "页面识别"
 
 #: forms.py:13
 msgid "Directory Settings"
-msgstr "目錄設定"
+msgstr "目录设置"
 
 #: forms.py:14 models.py:27
 msgid "Content"
-msgstr "內容"
+msgstr "内容"
 
 #: forms.py:32 models.py:33 tables.py:15
 #: templates/netbox_custom_pages/custom_page.html:20
 msgid "Editor Mode"
-msgstr "編輯器模式"
+msgstr "编辑器模式"
 
 #: models.py:11
 msgid "WYSIWYG Editor"
-msgstr "所見即所得編輯器"
+msgstr "所见即所得编辑器"
 
 #: models.py:12
 msgid "Raw HTML Editor"
-msgstr "網頁原始碼編輯器"
+msgstr "网页源代码编辑器"
 
 #: models.py:18
 msgid "Page Name"
-msgstr "頁面名稱"
+msgstr "页面名称"
 
 #: models.py:23
 msgid "Unique URL-friendly identifier (e.g., 'my-status-page')"
-msgstr "獨一無二的短網址標識符 (如 'my-status-page')"
+msgstr "唯一的短网址标识符 (如 'my-status-page')"
 
 #: models.py:38
 msgid "Menu Link Text"
-msgstr "選單顯示文字"
+msgstr "菜单显示文字"
 
 #: models.py:39
 msgid "Optional text to display in the directory menu. Defaults to Name if blank."
-msgstr "在版面上顯示的替代文字。如果留空則預設顯示頁面名稱。"
+msgstr "在版面上显示的替代文字。如果留空則預設显示页面名称。"
 
 #: models.py:43
 msgid "Weight / Order"
-msgstr "權重排序"
+msgstr "权重排序"
 
 #: models.py:44
 msgid "Display order in the directory (lower numbers appear first)."
-msgstr "在目錄中的顯示順序（數字越小越前面）。"
+msgstr "在目录中的显示顺序（数字越小越靠前）。"
 
 #: models.py:48 tables.py:21
 msgid "Published"
-msgstr "發布狀態"
+msgstr "发布状态"
 
 #: models.py:49
 msgid "If unchecked, this page will be hidden from the public directory."
-msgstr "如果取消勾選，此頁面將會從前台目錄中隱藏。"
+msgstr "如果取消勾选，此页面将会从前台目录中隐藏。"
 
 #: models.py:54
 msgid "Custom Page"
-msgstr "自定義頁面"
+msgstr "自定义页面"
 
 #: models.py:55
 msgid "Custom Pages"
-msgstr "自定義頁面列表"
+msgstr "自定义页面列表"
 
 #: navigation.py:8 templates/netbox_custom_pages/public_index.html:9
 msgid "Pages Directory"
-msgstr "自定義網頁目錄"
+msgstr "自定义网页目录"
 
 #: navigation.py:13
 msgid "Manage Pages"
-msgstr "管理頁面"
+msgstr "管理页面"
 
 #: navigation.py:20
 msgid "Add Page"
-msgstr "新增頁面"
+msgstr "新增页面"
 
 #: tables.py:12 templates/netbox_custom_pages/custom_page.html:12
 msgid "Name"
-msgstr "名稱"
+msgstr "名称"
 
 #: tables.py:18
 msgid "Weight"
-msgstr "權重"
+msgstr "权重"
 
 #: templates/netbox_custom_pages/custom_page.html:8
 msgid "Custom Page Details"
-msgstr "自定義頁面詳細資訊"
+msgstr "自定义页面详细信息"
 
 #: templates/netbox_custom_pages/custom_page.html:16
 msgid "Slug"
-msgstr "短網址 (Slug)"
+msgstr "短网址 (Slug)"
 
 #: templates/netbox_custom_pages/custom_page.html:24
 msgid "Public Link"
-msgstr "公開連結"
+msgstr "公开链接"
 
 #: templates/netbox_custom_pages/custom_page.html:27
 msgid "View Rendered Page"
-msgstr "檢視已渲染的頁面"
+msgstr "查看已渲染的页面"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:30
 msgid "Warning: To prevent breaking the NetBox UI, DO NOT use global CSS selectors (like"
-msgstr "警告：為了防止破壞 NetBox 原有排版，絕對不要使用全域的 CSS 選擇器（例如："
+msgstr "警告：为了防止破坏 NetBox 原有排版，绝对不要使用全局的 CSS 选择器（例如："
 
 #: templates/netbox_custom_pages/custom_page_edit.html:30
 msgid "Please use inline styles or Bootstrap utility classes."
-msgstr "請一律使用行內樣式或是 Bootstrap 原生類別來排版。"
+msgstr "请一律使用行內样式或是 Bootstrap 原生类別來排版。"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:32
 msgid "See more CSS guidelines"
-msgstr "檢視更多 CSS 安全規範"
+msgstr "查看更多 CSS 安全规范"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:37
 msgid "Content Editor"
-msgstr "內容編輯器"
+msgstr "內容编辑器"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:40
 msgid "API Helper"
@@ -142,137 +143,137 @@ msgstr "API 工具"
 #: templates/netbox_custom_pages/custom_page_edit.html:43
 #: templates/netbox_custom_pages/custom_page_edit.html:63
 msgid "Live Preview"
-msgstr "即時預覽"
+msgstr "即时预览"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:74
 msgid "API Helper & Code Snippets"
-msgstr "API 取用工具與程式碼片段"
+msgstr "API 取用工具与代码片段"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:78
 msgid "1. Fetch NetBox Data (No Token Required)"
-msgstr "1. 取用系統內部庫資料 (不需權杖)"
+msgstr "1. 取用系统內部库数据 (不需要令牌)"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:79
 msgid "Automatically utilizes your current NetBox login session."
-msgstr "自動帶入您當下登入 NetBox 的權限與 Session 階段。"
+msgstr "自动带入您当下登录 NetBox 的权限与 Session 阶段。"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:84
 msgid "2. Secure Proxy Request (Third-Party APIs)"
-msgstr "2. 安全代理請求 (串接第三方 API)"
+msgstr "2. 安全代理请求 (串接三方 API)"
 
 #: templates/netbox_custom_pages/custom_page_edit.html:85
 msgid "Prevents token leaks and CORS issues. Set tokens in your NetBox configuration.py <code>PLUGINS_CONFIG</code> first."
-msgstr "防止權杖外流與 CORS 阻擋。請先在 NetBox 的 <code>configuration.py</code> 中設定權杖對應。"
+msgstr "防止令牌外流与 CORS 阻擋。请先在 NetBox 的 <code>configuration.py</code> 中设置令牌对应。"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:4
 #: templates/netbox_custom_pages/docs/css_policy.html:11
 msgid "CSS Guidelines"
-msgstr "CSS 安全規範"
+msgstr "CSS 安全规范"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:14
 msgid "To ensure your Custom Pages integrate seamlessly with the NetBox UI and prevent breaking other users' viewing experiences, please strictly follow these CSS guidelines."
-msgstr "為了確保您的自定義頁面完美融合進系統，且不破壞其他人的瀏覽體驗，請嚴格遵守以下安全規範。"
+msgstr "为了确保您的自定义页面完美融合進系統，且不破坏其他人的浏览体验，请严格遵守以下安全规范。"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:17
 msgid "Core Principle: No Global CSS Pollution"
-msgstr "核心原則：禁止全域污染"
+msgstr "核心原则：禁止全局污染"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:18
 msgid "Your page code is directly embedded into the NetBox framework. Any CSS rules without a scoped boundary will leak out and break the official NetBox menus and layout."
-msgstr "您的程式碼是被直接嵌入入 NetBox 原生框架中的。任何沒有邊界限制的 CSS 都會向外滲漏，並癱瘓 NetBox 原本的系統版面。"
+msgstr "您的程式码是被直接嵌入入 NetBox 原生框架中的。任何没有边界限制的 CSS 都会向外滲漏，并癱瘓 NetBox 原本的系统版面。"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:21
 msgid "Incorrect (Do Not Use)"
-msgstr "錯誤寫法 (絕對禁止使用)"
+msgstr "错误写法 (绝对禁止使用)"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:22
 msgid "Never write global styles targeting raw HTML elements like below:"
-msgstr "絕不可以直接撰寫針對全域核心標籤的樣式，例如："
+msgstr "绝不可以直接撰写针对全局核心标签的样式，例如："
 
 #: templates/netbox_custom_pages/docs/css_policy.html:24
 msgid "This sets the entire NetBox background to black, causing a disaster!"
-msgstr "這將會把整個大系統的背景變成黑色的，導致全站版面大災難！"
+msgstr "这将会把整个大系统的背景变成黑色的，导致全站版面大灾难！"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:33
 msgid "Best Practice 1: Inline Styles"
-msgstr "最佳實踐一：行內樣式"
+msgstr "最佳实践一：行內样式"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:34
 msgid "Writing styles directly on elements is the safest and will not cause pollution:"
-msgstr "直接把樣式寫在網頁 HTML 元素屬性上是最安全的："
+msgstr "直接把样式写在网页 HTML 元素属性上是最安全的："
 
 #: templates/netbox_custom_pages/docs/css_policy.html:36
 msgid "Safe web content"
-msgstr "安全範圍內的網頁內容"
+msgstr "安全范围內的网页內容"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:39
 msgid "Best Practice 2: Scoped Wrapper"
-msgstr "最佳實踐二：邊界坎套"
+msgstr "最佳实践二：边界嵌套"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:40
 msgid "If you must use a <style> block, create a unique outer wrapper ID or class, and nest all your CSS under it:"
-msgstr "如果您堅持要寫整坨的 <style> 樣式表，請一定要使用一個獨有的 ID 或 Class 容器把它們包起來："
+msgstr "如果您坚持要写整坨的 <style> 样式表，请一定要使用一個独有的 ID 或 Class 容器把它們包起來："
 
 #: templates/netbox_custom_pages/docs/css_policy.html:42
 msgid "This only affects the inner p tag of your custom container."
-msgstr "這將只會影響這個坎套以內的標籤。"
+msgstr "这将只会影响这个嵌套以內的标签。"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:49
 msgid "Ensure all your content is wrapped safely."
-msgstr "確保您所有的內容都只在範圍內。"
+msgstr "确保您所有的內容都只在范围内。"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:51
 msgid "Safe custom content here"
-msgstr "在這之中編輯您的安全內容"
+msgstr "在这之中编辑您的安全內容"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:54
 msgid "Ultimate Practice: Bootstrap 5"
-msgstr "最高實踐：使用原生 Bootstrap 5"
+msgstr "最高实践：使用原生 Bootstrap 5"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:55
 msgid "NetBox natively includes Bootstrap 5. We highly recommend using native Bootstrap classes for formatting. You might not need custom CSS at all:"
-msgstr "系統內建了 Bootstrap 5，我們強烈建議您直接使用原生的 Bootstrap 介面設計類別進行排版，這樣您根本不用寫自己的 CSS："
+msgstr "系统內建了 Bootstrap 5，我们强烈建议您直接使用原生的 Bootstrap 界面设计类別進行排版，这样您根本不用写自己的 CSS："
 
 #: templates/netbox_custom_pages/docs/css_policy.html:56
 msgid "Use Bootstrap cards, buttons, and spacing."
-msgstr "盡情使用 Bootstrap 的卡片元件、按鈕、陰影與間距排版"
+msgstr "尽情使用 Bootstrap 的卡片组件、按钮、阴影与间距排版"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:58
 msgid "System Dashboard"
-msgstr "系統儀表板範例"
+msgstr "系统仪表板範例"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:59
 msgid "Load Data"
-msgstr "載入感測器資料"
+msgstr "載入感測器数据"
 
 #: templates/netbox_custom_pages/docs/css_policy.html:64
 msgid "Close Window"
-msgstr "關閉知識視窗"
+msgstr "关闭知視窗"
 
 #: templates/netbox_custom_pages/public_index.html:4
 msgid "Custom Pages Directory"
-msgstr "自定義模組前台目錄"
+msgstr "自定义模块前台目录"
 
 #: templates/netbox_custom_pages/public_index.html:21
 msgid "Open Page"
-msgstr "開啟網頁"
+msgstr "开启网页"
 
 #: templates/netbox_custom_pages/public_index.html:30
 msgid "No pages have been published yet."
-msgstr "目前還沒有管理員上架並發布任何自訂的網頁。"
+msgstr "目前还没有管理员上架并发布任何自訂的网页。"
 
 #: templates/netbox_custom_pages/menu_editor.html:4
 #: templates/netbox_custom_pages/menu_editor.html:12
 msgid "Menu Editor"
-msgstr "選單編輯器"
+msgstr "菜单编辑器"
 
 #: templates/netbox_custom_pages/menu_editor.html:15
 msgid "Back to Manage Pages"
-msgstr "返回管理頁面"
+msgstr "返回管理页面"
 
 #: templates/netbox_custom_pages/menu_editor.html:21
 msgid "Adjust the display name, sort order, and publish status for all pages here. Lower weight values appear first in the directory."
-msgstr "在此調整所有頁面的顯示名稱、排序權重與發布狀態。權重數字越小的頁面會排在目錄越前方。"
+msgstr "在此调整所有页面的显示名称、权重以及发布状态。权重越低，在目录中排名越靠前。"
 
 #: templates/netbox_custom_pages/menu_editor.html:37
 msgid "Actions"
@@ -280,64 +281,64 @@ msgstr "操作"
 
 #: templates/netbox_custom_pages/menu_editor.html:57
 msgid "Edit Page"
-msgstr "編輯頁面"
+msgstr "编辑页面"
 
 #: templates/netbox_custom_pages/menu_editor.html:60
 msgid "Preview"
-msgstr "預覽"
+msgstr "预览"
 
 #: templates/netbox_custom_pages/menu_editor.html:68
 msgid "No pages created yet."
-msgstr "目前尚未建立任何頁面。"
+msgstr "目前尚未建立任何页面。"
 
 #: templates/netbox_custom_pages/menu_editor.html:82
 msgid "Save All Changes"
-msgstr "儲存所有變更"
+msgstr "保存所有更改"
 
 #: templates/netbox_custom_pages/json_import.html:4
 #: templates/netbox_custom_pages/json_import.html:12
 msgid "Import Pages from JSON"
-msgstr "從 JSON 匯入頁面"
+msgstr "从 JSON 导入页面"
 
 #: templates/netbox_custom_pages/json_import.html:16
 msgid "Export All as JSON"
-msgstr "匯出為 JSON 檔案"
+msgstr "导出为 JSON 文件"
 
 #: templates/netbox_custom_pages/json_import.html:30
 msgid "Successfully imported"
-msgstr "成功匯入"
+msgstr "成功导入"
 
 #: templates/netbox_custom_pages/json_import.html:30
 msgid "page(s)"
-msgstr "個頁面"
+msgstr "个页面"
 
 #: templates/netbox_custom_pages/json_import.html:39
 msgid "Skipped"
-msgstr "已略過"
+msgstr "已跳过"
 
 #: templates/netbox_custom_pages/json_import.html:39
 msgid "existing page(s)"
-msgstr "個已存在的頁面"
+msgstr "个已存在的页面"
 
 #: templates/netbox_custom_pages/json_import.html:48
 msgid "Errors"
-msgstr "錯誤"
+msgstr "错误"
 
 #: templates/netbox_custom_pages/json_import.html:55
 msgid "No records were processed."
-msgstr "沒有任何資料被處理。"
+msgstr "没有处理任何记录。"
 
 #: templates/netbox_custom_pages/json_import.html:62
 msgid "Import JSON Data"
-msgstr "匯入 JSON 資料"
+msgstr "导入 JSON 数据"
 
 #: templates/netbox_custom_pages/json_import.html:67
 msgid "Expected JSON format:"
-msgstr "預期的 JSON 格式："
+msgstr "预期 JSON 格式："
 
 #: templates/netbox_custom_pages/json_import.html:79
 msgid "Pages with an existing slug will be skipped automatically."
-msgstr "若網址標識符 (Slug) 已存在，該筆記錄將會自動跳過。"
+msgstr "若网址标识符 (Slug) 已存在，该记录将自动跳过。"
 
 #: templates/netbox_custom_pages/json_import.html:106
 msgid "Cancel"
@@ -345,12 +346,12 @@ msgstr "取消"
 
 #: templates/netbox_custom_pages/json_import.html:108
 msgid "Import"
-msgstr "開始匯入"
+msgstr "开始导入"
 
 #: views.py:26
 msgid "Import JSON"
-msgstr "匯入 JSON"
+msgstr "导入 JSON"
 
 #: views.py:27
 msgid "Export JSON"
-msgstr "匯出 JSON"
+msgstr "导出 JSON"

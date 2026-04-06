@@ -5,7 +5,7 @@
 # NetBox Custom Pages Plugin
 ### Creating custom web pages made easy!
 
-**English** | [繁體中文](README_zh_TW.md)
+**English** | [繁體中文](README_zh_TW.md) | [简体中文](README_zh_CN.md)
 
 A powerful, highly-customizable NetBox plugin allowing administrators to create dynamic HTML/JS pages and dashboards right from the NetBox UI. It features a built-in WYSIWYG editor (Quill.js) for simple text pages, and a raw HTML/JS Code Editor (CodeMirror) for advanced API-driven dashboards.
 
@@ -22,20 +22,20 @@ A powerful, highly-customizable NetBox plugin allowing administrators to create 
 
 ## 📽️ Screenshots
 
-### 1. Public Dashboard Hub
-_A clean, read-only index page for all published pages._
+### 1. Build Your Own Pages
+_Call the APIs you need and craft the layout you want. Powerful, interactive, and integrated._
 ![Public Dashboard](docs/img/screenshots-your-own-pages.png)
 
-### 2. Manage Pages (Admin)
-_The central management interface for creation and deletion._
+### 2. Centralized Management
+_A streamlined administrative dashboard to manage all your custom content in one place._
 ![Manage Pages](docs/img/screenshots-cuscom-pages.png)
 
-### 3. Menu Editor (Bulk Actions)
-_Bulk edit display names, weights, and status for all pages._
+### 3. Bulk Menu & Weight Editor
+_Experience effortless organization. Batch edit link text, order (weights), and visibility status._
 ![Menu Editor](docs/img/screenshots-menu-editor.png)
 
-### 4. Dual Editor Modes
-_Choose between WYSIWYG and Raw HTML editors._
+### 4. Dual-Mode Editing Flexibility
+_Switch between the intuitive WYSIWYG editor for quick content and the Code Editor for precision HTML/JS control._
 ![WYSIWYG Editor](docs/img/screenshots-wysiwyg-editor.png)
 ![HTML Editor](docs/img/screenshots-text-editor.png)
 
@@ -109,12 +109,97 @@ When styling your custom pages, do **not** use global CSS selectors (e.g., `body
 
 ---
 
-## Installation 
-*(Standard NetBox Plugin installation procedure...)*
+## 📦 Installation & Configuration
 
-1. Add `netbox_custom_pages` to `PLUGINS` in `configuration.py`.
-2. Run database migrations: `python manage.py makemigrations netbox_custom_pages` then `python manage.py migrate`.
-3. Restart the NetBox WSGI service.
+### 1. Download and Install
+Assuming your NetBox installation is at `/opt/netbox`:
+
+```bash
+# Clone the repository
+cd /opt
+git clone https://github.com/threesecond/netbox-custom-pages.git
+cd netbox-custom-pages
+
+# Activate NetBox Virtual Environment
+source /opt/netbox/venv/bin/activate
+
+# Install the plugin (Editable mode recommended for easy updates)
+pip install -e .
+```
+
+### 2. Enable the Plugin
+Edit your NetBox `configuration.py` (usually at `/opt/netbox/netbox/netbox/configuration.py`):
+
+```python
+PLUGINS = [
+    'netbox_custom_pages',
+]
+
+# (Optional) Configuration for API Proxy tokens
+PLUGINS_CONFIG = {
+    'netbox_custom_pages': {
+        'external_api_keys': {
+            'grafana_read_only': 'Bearer eyJhbGciOiJIUz...',
+            'zabbix_auth': 'Api-Token 123456789...'
+        },
+        'allow_raw_js': True
+    }
+}
+```
+
+### 3. Run Migrations & Collect Static Files
+```bash
+cd /opt/netbox/netbox/
+python3 manage.py migrate
+python3 manage.py collectstatic --no-input
+```
+
+### 4. Restart Services
+```bash
+sudo systemctl restart netbox netbox-rq
+```
+
+---
+
+## 🔄 Updating the Plugin
+
+To update your installation to the latest version via Git:
+
+```bash
+cd /opt/netbox-custom-pages
+git pull
+
+# Apply potential database changes
+source /opt/netbox/venv/bin/activate
+cd /opt/netbox/netbox/
+python3 manage.py migrate
+python3 manage.py collectstatic --no-input
+
+# Restart services
+sudo systemctl restart netbox netbox-rq
+```
+
+---
+
+## 🗑️ Uninstallation
+
+To remove the plugin from NetBox:
+
+1.  **Remove from Configuration**: Edit `configuration.py` and remove `'netbox_custom_pages'` from the `PLUGINS` list.
+2.  **Uninstall using Pip**:
+    ```bash
+    source /opt/netbox/venv/bin/activate
+    pip uninstall netbox-custom-pages
+    ```
+3.  **Restart Services**:
+    ```bash
+    sudo systemctl restart netbox netbox-rq
+    ```
+
+> [!IMPORTANT]
+> Uninstalling the plugin **does not** automatically delete the custom pages database tables. If you want to completely remove all data, you must manually drop the plugin's tables (those starting with `netbox_custom_pages_`) from your database.
+
+---
 
 ---
 
