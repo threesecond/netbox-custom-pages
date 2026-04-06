@@ -17,9 +17,7 @@ class CustomPageListView(generic.ObjectListView):
     table = tables.CustomPageTable
     filterset = filtersets.CustomPageFilterSet
     filterset_form = forms.CustomPageFilterForm
-    # Disable the auto-generated import button (it produces a broken /pages/None URL).
-    # Users access our custom import pages via the extra buttons injected below.
-    action_buttons = ('add', 'export')
+    # We include our custom JSON actions in extra_context
     template_name = 'netbox_custom_pages/custompage_list.html'
 
     def get_extra_context(self, request):
@@ -110,73 +108,12 @@ class MenuEditorView(PermissionRequiredMixin, View):
         })
 
 
-class CustomPageImportView(PermissionRequiredMixin, View):
+class CustomPageImportView(generic.BulkImportView):
     """
-    CSV import view for CustomPage metadata.
-    Content field is intentionally excluded; users fill it in via the editor.
-    Expected CSV headers: name, slug, editor_mode, link_text, weight, is_published
+    CSV/YAML import view for CustomPage metadata using the official NetBox BulkImportView.
     """
-    permission_required = 'netbox_custom_pages.add_custompage'
-    template_name = 'netbox_custom_pages/csv_import.html'
-    ALLOWED_FIELDS = {'name', 'slug', 'editor_mode', 'link_text', 'weight', 'is_published'}
-    REQUIRED_FIELDS = {'name', 'slug'}
-
-    def get(self, request):
-        return render(request, self.template_name, {'form': forms.CSVImportForm()})
-
-    def post(self, request):
-        form = forms.CSVImportForm(request.POST, request.FILES)
-        if not form.is_valid():
-            return render(request, self.template_name, {'form': form})
-
-        # Read raw CSV text
-        try:
-            if request.FILES.get('csv_file'):
-                raw = request.FILES['csv_file'].read().decode('utf-8')
-            else:
-                raw = form.cleaned_data['csv_data']
-            reader = csv.DictReader(io.StringIO(raw.strip()))
-        except Exception as e:
-            form.add_error(None, f'Failed to parse CSV: {e}')
-            return render(request, self.template_name, {'form': form})
-
-        # Validate headers
-        if not reader.fieldnames:
-            form.add_error(None, 'CSV appears to be empty or has no headers.')
-            return render(request, self.template_name, {'form': form})
-
-        missing = self.REQUIRED_FIELDS - set(reader.fieldnames)
-        if missing:
-            form.add_error(None, f'Missing required CSV columns: {", ".join(missing)}')
-            return render(request, self.template_name, {'form': form})
-
-        created, skipped, errors = [], [], []
-        for i, row in enumerate(reader, start=2):  # start=2 accounts for header row
-            slug = row.get('slug', '').strip()
-            if not slug:
-                errors.append(f'Row #{i}: missing slug.')
-                continue
-            if models.CustomPage.objects.filter(slug=slug).exists():
-                skipped.append(slug)
-                continue
-            try:
-                kwargs = {k: v.strip() for k, v in row.items() if k in self.ALLOWED_FIELDS and v}
-                # Convert types
-                if 'weight' in kwargs:
-                    kwargs['weight'] = int(kwargs['weight'])
-                if 'is_published' in kwargs:
-                    kwargs['is_published'] = kwargs['is_published'].lower() in ('true', '1', 'yes')
-                obj = models.CustomPage(**kwargs)
-                obj.full_clean()
-                obj.save()
-                created.append(slug)
-            except Exception as e:
-                errors.append(f'Row #{i} ({slug}): {e}')
-
-        return render(request, self.template_name, {
-            'form': forms.CSVImportForm(),
-            'result': {'created': created, 'skipped': skipped, 'errors': errors},
-        })
+    queryset = models.CustomPage.objects.all()
+    model_form = forms.CustomPageImportForm
 
 
 class JSONImportView(PermissionRequiredMixin, View):
