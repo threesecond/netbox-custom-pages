@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
+from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm, NetBoxModelImportForm
 from utilities.forms.fields import TagFilterField
 from utilities.forms.rendering import FieldSet
 from django.forms import modelformset_factory
@@ -56,3 +56,41 @@ MenuEditorFormSet = modelformset_factory(
     form=MenuItemForm,
     extra=0,
 )
+
+
+class CustomPageImportForm(NetBoxModelImportForm):
+    """
+    CSV import form for CustomPage.
+    Only imports metadata fields; content is left blank intentionally.
+    """
+    class Meta:
+        model = CustomPage
+        fields = ('name', 'slug', 'editor_mode', 'link_text', 'weight', 'is_published')
+
+
+class JSONImportForm(forms.Form):
+    """
+    Form for importing CustomPage objects from a JSON file or pasted JSON text.
+    Supports full content import (including HTML content field).
+    """
+    json_file = forms.FileField(
+        required=False,
+        label=_('JSON File'),
+        help_text=_('Upload a .json file exported from this plugin.')
+    )
+    json_data = forms.CharField(
+        required=False,
+        label=_('JSON Data'),
+        widget=forms.Textarea(attrs={
+            'class': 'form-control font-monospace',
+            'rows': 12,
+            'placeholder': '[\n  {\n    "name": "My Page",\n    "slug": "my-page",\n    "editor_mode": "html",\n    "content": "<h1>Hello</h1>",\n    "link_text": "My Page",\n    "weight": 100,\n    "is_published": true\n  }\n]'
+        }),
+        help_text=_('Or paste JSON data directly. File upload takes priority if both are provided.')
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not cleaned_data.get('json_file') and not cleaned_data.get('json_data'):
+            raise forms.ValidationError(_('Please provide either a JSON file or paste JSON data.'))
+        return cleaned_data

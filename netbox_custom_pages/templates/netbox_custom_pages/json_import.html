@@ -1,0 +1,117 @@
+{% extends 'base/layout.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Import Pages from JSON" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col col-md-10 offset-md-1 mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+            <h2 class="mb-0">
+                <i class="mdi mdi-code-json text-primary"></i> {% trans "Import Pages from JSON" %}
+            </h2>
+            <div class="d-flex gap-2">
+                <a href="{% url 'plugins:netbox_custom_pages:custompage_export_json' %}" class="btn btn-sm btn-outline-success">
+                    <i class="mdi mdi-download"></i> {% trans "Export All as JSON" %}
+                </a>
+                <a href="{% url 'plugins:netbox_custom_pages:custompage_list' %}" class="btn btn-sm btn-outline-secondary">
+                    <i class="mdi mdi-arrow-left"></i> {% trans "Back to Manage Pages" %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Result Summary -->
+        {% if result %}
+        <div class="mb-4">
+            {% if result.created %}
+            <div class="alert alert-success">
+                <i class="mdi mdi-check-circle"></i>
+                <strong>{% trans "Successfully imported" %} {{ result.created|length }} {% trans "page(s)" %}:</strong>
+                <ul class="mb-0 mt-1">
+                    {% for slug in result.created %}<li><code>{{ slug }}</code></li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if result.skipped %}
+            <div class="alert alert-warning">
+                <i class="mdi mdi-alert"></i>
+                <strong>{% trans "Skipped" %} {{ result.skipped|length }} {% trans "existing page(s)" %} (slug already exists):</strong>
+                <ul class="mb-0 mt-1">
+                    {% for slug in result.skipped %}<li><code>{{ slug }}</code></li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if result.errors %}
+            <div class="alert alert-danger">
+                <i class="mdi mdi-close-circle"></i>
+                <strong>{% trans "Errors" %}:</strong>
+                <ul class="mb-0 mt-1">
+                    {% for err in result.errors %}<li>{{ err }}</li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if not result.created and not result.skipped and not result.errors %}
+            <div class="alert alert-info">{% trans "No records were processed." %}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Import Form -->
+        <div class="card shadow-sm">
+            <div class="card-header"><strong>{% trans "Import JSON Data" %}</strong></div>
+            <div class="card-body">
+
+                <div class="alert alert-info mb-4">
+                    <i class="mdi mdi-information-outline"></i>
+                    {% trans "Expected JSON format:" %}
+                    <pre class="mb-0 mt-2 bg-dark text-light p-3 rounded" style="font-size:0.82em;">[
+  {
+    "name": "My Page",
+    "slug": "my-page",
+    "editor_mode": "html",
+    "content": "&lt;h1&gt;Hello&lt;/h1&gt;",
+    "link_text": "My Page",
+    "weight": 100,
+    "is_published": true
+  }
+]</pre>
+                    <small class="d-block mt-2 text-muted">{% trans "Pages with an existing slug will be skipped automatically." %}</small>
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">{{ form.json_file.label }}</label>
+                        {{ form.json_file }}
+                        <div class="form-text">{{ form.json_file.help_text }}</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">{{ form.json_data.label }}</label>
+                        {{ form.json_data }}
+                        <div class="form-text">{{ form.json_data.help_text }}</div>
+                    </div>
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                        <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex gap-2 justify-content-end mt-3">
+                        <a href="{% url 'plugins:netbox_custom_pages:custompage_list' %}" class="btn btn-outline-secondary">{% trans "Cancel" %}</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="mdi mdi-upload"></i> {% trans "Import" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

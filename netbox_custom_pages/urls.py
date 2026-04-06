@@ -16,6 +16,11 @@ urlpatterns = [
 
     # Menu Editor: bulk-edit display settings for all pages
     path('pages/menu/', views.MenuEditorView.as_view(), name='menu_editor'),
+
+    # Import / Export
+    path('pages/import/', views.CustomPageImportView.as_view(), name='custompage_import'),
+    path('pages/import/json/', views.JSONImportView.as_view(), name='custompage_import_json'),
+    path('pages/export/json/', views.JSONExportView.as_view(), name='custompage_export_json'),
     
     # Detail view in Admin UI
     path('pages/<int:pk>/', views.CustomPageView.as_view(), name='custompage'),
