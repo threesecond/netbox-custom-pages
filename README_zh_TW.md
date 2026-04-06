@@ -7,8 +7,11 @@
 ## 功能特色 (Features)
 - **雙編輯器模式 (Dual Editor Modes)**：可自由切換富文本編輯器 (Quill.js) 與純 HTML/JS 程式碼編輯器 (CodeMirror)。
 - **前台目錄大廳 (Public Dashboard Directory)**：一個乾淨且唯讀的展示首頁，列出所有已發布上線的自定義頁面。
-- **後端 API 代理 (Server-Side API Proxy)**：讓您能安全地呼叫第三方系統 API (如 Grafana, Zabbix 等)，絕對不會將您的存取權杖 (Token) 洩露在任何被瀏覽器讀取得到的原始碼中。
-- **完整多國語系支援 (Full i18n Support)**：隨時準備好為各式語言提供無縫的翻譯轉換。
+- **API 代理支援 (API Proxy Support)**：安全地呼叫外部 API (如 Grafana, Zabbix)，絕不洩露權杖 (Tokens)。
+- **批次管理操作 (Bulk Operations)**：專屬的選單編輯器 (Menu Editor)，可一次調整所有頁面的顯示設定。
+- **匯入與匯出 (Import/Export)**：完整支援 CSV (Metadata) 與 JSON (完整內容) 的備份與遷移。
+- **完整多國語系 (Full i18n Support)**：支援多國翻譯 (v0.8.0 已內建完整繁體中文語系)。
+- **企業級就緒 (Enterprise Ready)**：與 NetBox 4.4+ 版本完美相容。
 
 ---
 
@@ -67,7 +70,7 @@ CSP_CONNECT_SRC = [
 
 | NetBox 版本     | 外掛版本       | 支援狀態               |
 |----------------|----------------|------------------------|
-| 4.4.x - 4.5.x  | 0.5.0+         | ✅ 完全支援 (Supported)|
+| 4.4.x - 4.5.x  | 0.8.0+         | ✅ 完全支援 (Supported)|
 | 4.3.x          | N/A            | ❌ 不支援 (Unsupported)|
 | < 4.2.x        | N/A            | ❌ 不支援 (Unsupported)|
 

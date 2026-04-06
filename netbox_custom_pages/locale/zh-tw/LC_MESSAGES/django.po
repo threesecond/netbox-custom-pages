@@ -260,3 +260,97 @@ msgstr "開啟網頁"
 #: templates/netbox_custom_pages/public_index.html:30
 msgid "No pages have been published yet."
 msgstr "目前還沒有管理員上架並發布任何自訂的網頁。"
+
+#: templates/netbox_custom_pages/menu_editor.html:4
+#: templates/netbox_custom_pages/menu_editor.html:12
+msgid "Menu Editor"
+msgstr "選單編輯器"
+
+#: templates/netbox_custom_pages/menu_editor.html:15
+msgid "Back to Manage Pages"
+msgstr "返回管理頁面"
+
+#: templates/netbox_custom_pages/menu_editor.html:21
+msgid "Adjust the display name, sort order, and publish status for all pages here. Lower weight values appear first in the directory."
+msgstr "在此調整所有頁面的顯示名稱、排序權重與發布狀態。權重數字越小的頁面會排在目錄越前方。"
+
+#: templates/netbox_custom_pages/menu_editor.html:37
+msgid "Actions"
+msgstr "操作"
+
+#: templates/netbox_custom_pages/menu_editor.html:57
+msgid "Edit Page"
+msgstr "編輯頁面"
+
+#: templates/netbox_custom_pages/menu_editor.html:60
+msgid "Preview"
+msgstr "預覽"
+
+#: templates/netbox_custom_pages/menu_editor.html:68
+msgid "No pages created yet."
+msgstr "目前尚未建立任何頁面。"
+
+#: templates/netbox_custom_pages/menu_editor.html:82
+msgid "Save All Changes"
+msgstr "儲存所有變更"
+
+#: templates/netbox_custom_pages/json_import.html:4
+#: templates/netbox_custom_pages/json_import.html:12
+msgid "Import Pages from JSON"
+msgstr "從 JSON 匯入頁面"
+
+#: templates/netbox_custom_pages/json_import.html:16
+msgid "Export All as JSON"
+msgstr "匯出為 JSON 檔案"
+
+#: templates/netbox_custom_pages/json_import.html:30
+msgid "Successfully imported"
+msgstr "成功匯入"
+
+#: templates/netbox_custom_pages/json_import.html:30
+msgid "page(s)"
+msgstr "個頁面"
+
+#: templates/netbox_custom_pages/json_import.html:39
+msgid "Skipped"
+msgstr "已略過"
+
+#: templates/netbox_custom_pages/json_import.html:39
+msgid "existing page(s)"
+msgstr "個已存在的頁面"
+
+#: templates/netbox_custom_pages/json_import.html:48
+msgid "Errors"
+msgstr "錯誤"
+
+#: templates/netbox_custom_pages/json_import.html:55
+msgid "No records were processed."
+msgstr "沒有任何資料被處理。"
+
+#: templates/netbox_custom_pages/json_import.html:62
+msgid "Import JSON Data"
+msgstr "匯入 JSON 資料"
+
+#: templates/netbox_custom_pages/json_import.html:67
+msgid "Expected JSON format:"
+msgstr "預期的 JSON 格式："
+
+#: templates/netbox_custom_pages/json_import.html:79
+msgid "Pages with an existing slug will be skipped automatically."
+msgstr "若網址標識符 (Slug) 已存在，該筆記錄將會自動跳過。"
+
+#: templates/netbox_custom_pages/json_import.html:106
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/netbox_custom_pages/json_import.html:108
+msgid "Import"
+msgstr "開始匯入"
+
+#: views.py:26
+msgid "Import JSON"
+msgstr "匯入 JSON"
+
+#: views.py:27
+msgid "Export JSON"
+msgstr "匯出 JSON"

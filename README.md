@@ -7,8 +7,11 @@ A powerful, highly-customizable NetBox plugin allowing administrators to create 
 ## Features
 - **Dual Editor Modes**: Choose between a Rich Text Editor (Quill.js) and a Raw HTML/JS Editor (CodeMirror).
 - **Public Dashboard Directory**: A clean, read-only index page displaying all published custom pages.
-- **Server-Side API Proxy**: Securely call third-party APIs (Grafana, Zabbix, etc.) without leaking authentication tokens in frontend source code.
-- **Full i18n Support**: Ready for translation into multiple languages.
+- **API Proxy Support**: Securely call external APIs (Grafana, Zabbix) without leaking tokens.
+- **Bulk Operations**: Dedicated Menu Editor for bulk updating display settings.
+- **Import/Export**: Full support for CSV (Metadata) and JSON (Full Content) backup and portability.
+- **Full i18n Support**: Ready for translation into multiple languages (v0.8.0+ includes pre-translated Traditional Chinese).
+- **Enterprise Ready**: Seamlessly compatible with NetBox 4.4+.
 
 ---
 
@@ -66,7 +69,7 @@ When styling your custom pages, do **not** use global CSS selectors (e.g., `body
 
 | NetBox Version | Plugin Version | Status             |
 |----------------|----------------|--------------------|
-| 4.4.x - 4.5.x  | 0.5.0+         | ✅ Fully Supported |
+| 4.4.x - 4.5.x  | 0.8.0+         | ✅ Fully Supported |
 | 4.3.x          | N/A            | ❌ Not Supported   |
 | < 4.2.x        | N/A            | ❌ Not Supported   |
 
