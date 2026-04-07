@@ -31,7 +31,7 @@
 ![菜单编辑器](docs/img/screenshots-menu-editor.png)
 
 ### 4. 双模式编辑的灵活性
-不论是适合快速图文的「富文本 (WYSIWYG)」编辑，或是追求极致控制的「源代码 (HTML/JS)」编辑，通通都能满足。
+不论是适合快速图文的「切换所见即所得 (WYSIWYG)」编辑，或是追求极致控制的「源代码 (HTML/JS)」编辑，通通都能满足。
 ![富文本编辑器](docs/img/screenshots-wysiwyg-editor.png)
 ![源代码编辑器](docs/img/screenshots-text-editor.png)
 
